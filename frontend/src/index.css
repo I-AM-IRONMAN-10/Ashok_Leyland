@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --al-blue: #016FB6;
+    --al-charcoal: #3F3F3F;
+    --al-bg: #F5F7FA;
+    --al-steel: #E4E8EF;
+  }
+  
+  body {
+    background-color: var(--al-bg);
+    color: #1f2937;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Cell status color tokens */
+.cell-occupied {
+  background-color: #1B5E20;
+  color: #FFFFFF;
+  border-color: #144919;
+}
+
+.cell-available {
+  background-color: #E2E8F0;
+  color: #475569;
+  border-color: #CBD5E1;
+}
+
+.cell-pending {
+  background-color: #FF9100;
+  color: #FFFFFF;
+  border-color: #E68200;
+}
+
+.cell-blocked {
+  background-color: #D32F2F;
+  color: #FFFFFF;
+  border-color: #B71C1C;
+}
+
+.cell-relocating {
+  background-color: #7B1FA2;
+  color: #FFFFFF;
+  border-color: #4A148C;
+}
+
+.cell-reserved {
+  background-color: #424242;
+  color: #E0E0E0;
+  border-color: #212121;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Grid Pulse Highlight Animation */
+@keyframes grid-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(1, 111, 182, 0.7); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(1, 111, 182, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(1, 111, 182, 0); }
+}
+
+.pulse-highlight {
+  animation: grid-pulse 1.8s infinite;
+  z-index: 20;
+  position: relative;
+}
+
+/* Retrieval Target Red Animation */
+@keyframes red-retrieval-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.8); }
+  50% { transform: scale(1.05); box-shadow: 0 0 15px 5px rgba(220, 38, 38, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.cell-dispatch, .cell-retrieval-target {
+  background-color: #DC2626 !important;
+  color: #FFFFFF !important;
+  border-color: #991B1B !important;
+  animation: red-retrieval-pulse 1.5s infinite ease-in-out;
+  z-index: 25;
+}
