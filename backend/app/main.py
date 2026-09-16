@@ -11,9 +11,12 @@ from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 try:
-    from app.relocation_solver import generate_relocation_sequence, calculate_inbound_path
-except ImportError:
     from backend.app.relocation_solver import generate_relocation_sequence, calculate_inbound_path
+except ImportError:
+    try:
+        from app.relocation_solver import generate_relocation_sequence, calculate_inbound_path
+    except ImportError:
+        from relocation_solver import generate_relocation_sequence, calculate_inbound_path
 
 app = FastAPI(
     title="Ashok Leyland WMS Backend API",

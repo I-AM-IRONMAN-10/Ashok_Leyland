@@ -5,14 +5,17 @@ import os
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 backend_dir = os.path.join(root_dir, "backend")
 
-if root_dir not in sys.path:
-    sys.path.insert(0, root_dir)
-if backend_dir not in sys.path:
-    sys.path.insert(0, backend_dir)
+for p in [root_dir, backend_dir]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
+# Direct static imports so Vercel's bundler includes backend code
 try:
-    from backend.app.main import app
+    import backend.app.relocation_solver
+    import backend.app.main
+    app = backend.app.main.app
 except ImportError:
-    from app.main import app
+    import app.relocation_solver
+    import app.main
+    app = app.main.app
 
-# Vercel Serverless Function entrypoint

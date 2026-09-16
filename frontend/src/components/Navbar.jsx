@@ -156,17 +156,6 @@ export default function Navbar({
                 <div className="flex items-center space-x-1.5 shrink-0">
                   <button
                     onClick={() => {
-                      if (onTriggerRetrievalPath) onTriggerRetrievalPath(cell.location_code);
-                      setShowSearchResults(false);
-                    }}
-                    className="px-3 py-1.5 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white rounded-lg text-xs font-bold flex items-center space-x-1 shadow-md active:scale-95 transition"
-                  >
-                    <Navigation className="w-3.5 h-3.5" />
-                    <span>Retrieve (Nearest Path)</span>
-                  </button>
-
-                  <button
-                    onClick={() => {
                       if (onTriggerInboundPath) onTriggerInboundPath(cell.location_code);
                       setShowSearchResults(false);
                     }}

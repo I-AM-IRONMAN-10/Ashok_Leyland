@@ -91,16 +91,16 @@ export default function WarehouseGrid({
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
       {/* Active Path Visual Header Banner & Labor Navigation Controller */}
-      {activePath && (
-        <div className={`p-4 border-b text-white shadow-md transition-all ${activePath.type === 'INBOUND' ? 'bg-gradient-to-r from-emerald-800 via-teal-900 to-emerald-950 border-emerald-500' : 'bg-gradient-to-r from-red-900 via-slate-900 to-indigo-950 border-red-500'}`}>
+      {activePath && activePath.type === 'INBOUND' && (
+        <div className="p-4 border-b text-white shadow-md transition-all bg-gradient-to-r from-emerald-800 via-teal-900 to-emerald-950 border-emerald-500">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
             <div className="flex items-center space-x-3">
-              <div className={`p-2 rounded-xl text-white font-extrabold ${activePath.type === 'INBOUND' ? 'bg-emerald-600' : 'bg-red-600'}`}>
-                {activePath.type === 'INBOUND' ? <PackageCheck className="w-6 h-6 animate-bounce" /> : <Navigation className="w-6 h-6 animate-pulse" />}
+              <div className="p-2 rounded-xl text-white font-extrabold bg-emerald-600">
+                <PackageCheck className="w-6 h-6 animate-bounce" />
               </div>
               <div>
                 <div className="text-[11px] font-mono uppercase tracking-widest text-emerald-300 font-bold">
-                  {activePath.type === 'INBOUND' ? '📥 INBOUND STORAGE ROOM PATH' : '🚀 OUTBOUND NEAREST RETRIEVAL PATH'}
+                  📥 INBOUND STORAGE ROOM PATH
                 </div>
                 <h3 className="text-base font-extrabold tracking-tight">
                   {activePath.title}
@@ -356,18 +356,9 @@ export default function WarehouseGrid({
                               <button
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  if (onTriggerRetrievalForCell) onTriggerRetrievalForCell(cell.location_code);
-                                }}
-                                className="flex-1 py-1 bg-red-600 hover:bg-red-500 text-white rounded font-bold text-[10px] uppercase tracking-wider shadow"
-                              >
-                                🚀 Retrieve Path
-                              </button>
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
                                   if (onTriggerInboundForCell) onTriggerInboundForCell(cell.location_code);
                                 }}
-                                className="flex-1 py-1 bg-emerald-700 hover:bg-emerald-600 text-white rounded font-bold text-[10px] uppercase tracking-wider shadow"
+                                className="w-full py-1 bg-emerald-700 hover:bg-emerald-600 text-white rounded font-bold text-[10px] uppercase tracking-wider shadow"
                               >
                                 📥 Inbound Path
                               </button>
